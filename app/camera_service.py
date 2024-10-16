@@ -6,6 +6,8 @@ def take_photo():
     screenshot = camera.get_data(0)
     camera.close()
 
+    plt.clf()
     plt.imshow(screenshot)
+    plt.show()
 
 
