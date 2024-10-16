@@ -22,7 +22,7 @@ import json
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Startup complete")
-    subprocess.check_output(["open ~/MondayBot/Screenshot.png"], shell=True)
+    subprocess.check_output(["open ~/MondayBot/Screenshot.png &"], shell=True)
     logger.info("animation displayed")
     yield
 
