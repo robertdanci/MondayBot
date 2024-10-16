@@ -1,0 +1,5 @@
+picamzero~=1.01
+fastapi
+uvicorn
+
+
