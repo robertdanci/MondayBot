@@ -40,3 +40,5 @@ fastapi
 uvicorn
 pydub
 pygame
+imageio[ffmpeg]
+matplotlib

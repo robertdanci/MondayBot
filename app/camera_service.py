@@ -1,14 +1,11 @@
-import pygame
-import pygame.camera
-
-pygame.init()
-pygame.camera.init()
+import imageio as iio
+import matplotlib.pyplot as plt
 
 def take_photo():
-    cam = pygame.camera.Camera('/dev/video8')
-    cam.start()
-    image = cam.get_image()
-    pygame.image.save(image, "/tmp/captured_image.jpg")
-    cam.stop()
+    camera = iio.get_reader("<video8>")
+    screenshot = camera.get_data(0)
+    camera.close()
+
+    plt.imshow(screenshot)
 
 

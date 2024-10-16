@@ -1,20 +1,34 @@
 import logging
 import os
-from os import environ
+from contextlib import asynccontextmanager
 from typing import Dict, Any
 
+from PIL.Image import Image
 from fastapi import FastAPI
 from pydantic import BaseModel
+import matplotlib.image as mpimg
 
 from app.audio_service import play_audio
 from app.camera_service import take_photo
+import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
 
-app = FastAPI()
+
 
 import requests
 import json
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("Startup complete")
+    img = mpimg.imread('Screenshot.png')
+    plt.imshow(img)
+    logger.info("animation displayed")
+    yield
+
+app = FastAPI(lifespan=lifespan)
+
 
 headers = {
         'Authorization': os.environ.get("ACCESS_TOKEN"),
@@ -87,8 +101,8 @@ class Event(BaseModel):
     # we don't need the value object because the automation is setup to only trigger when status changes to DONE
 
 class WebHookBody(BaseModel):
-    event: Event | None = None
-    challenge: str | None = None
+    event: Event  = None
+    challenge: str = None
 
 @app.post("/webhook")
 def webhook_handler(body: WebHookBody):
