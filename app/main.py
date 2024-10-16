@@ -1,17 +1,22 @@
+import logging
+from typing import Dict, Any
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from audio_service import play_audio
-from camera_service import take_photo
+from app.audio_service import play_audio
+from app.camera_service import take_photo
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-@app.get("/callback")
+@app.post("/callback")
 def read_root():
     take_photo()
     return {"Hello": "World"}
 
-@app.get("/play-audio")
+@app.post("/play-audio")
 def play():
     play_audio()
     return "done"
@@ -63,3 +68,8 @@ def webhook_handler(body: WebHookBody):
     print("handling event")
     return "ok"
 
+
+@app.post("/echo")
+def play(payload: Dict[Any, Any]):
+    logger.info(payload)
+    return payload
