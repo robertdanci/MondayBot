@@ -1,20 +1,7 @@
-import threading
-
-import matplotlib.pyplot as plt
-from matplotlib import image as mpimg
+import subprocess
 
 
 def take_photo():
-    t = threading.Thread(target=show)
-    t.setDaemon(True)
-    t.start()
-
-
-def show():
-    plt.clf()
-    img = mpimg.imread('IMG.jpg')
-    # Display the image
-    plt.imshow(img)
-    plt.show(block=False)
+    subprocess.check_output(["open ~/MondayBot/IMG.jpg"], shell=True)
 
 
