@@ -1,4 +1,4 @@
-from picamzero import Camera
+# from picamzero import Camera
 from time import sleep
 
 
