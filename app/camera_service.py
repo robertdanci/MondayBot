@@ -8,7 +8,7 @@ def take_photo():
     cam = pygame.camera.Camera('/dev/video8', (500, 500))
     cam.start()
     image = cam.get_image()
-    pygame.image.save(image, "~/captured_image.jpg")
+    pygame.image.save(image, "/tmp/captured_image.jpg")
     cam.stop()
 
 
