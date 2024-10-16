@@ -40,10 +40,10 @@ def upload_file_to_monday_update(image_path: str):
     response = requests.request("POST", "https://api.monday.com/v2/file", headers=headers, data=payload, files=files)
     logger.info(response.text)
 
-@app.post("/callback")
+@app.post("/take-photo")
 def read_root():
     take_photo()
-    return {"Hello": "World"}
+    return "done"
 
 @app.post("/play-audio")
 def play():
