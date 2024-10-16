@@ -1,5 +1,6 @@
 import logging
 import os
+import threading
 from contextlib import asynccontextmanager
 from typing import Dict, Any
 
@@ -20,12 +21,17 @@ import json
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Startup complete")
+    t = threading.Thread(target=show_image)
+    t.setDaemon(True)
+    t.start()
+    logger.info("animation displayed")
+    yield
+
+def show_image():
     img = mpimg.imread('Screenshot.png')
     # Display the image
     plt.imshow(img)
     plt.show(block=False)
-    logger.info("animation displayed")
-    yield
 
 app = FastAPI(lifespan=lifespan)
 

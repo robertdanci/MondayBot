@@ -1,15 +1,16 @@
-import imageio
-import imageio as iio
+import threading
+
 import matplotlib.pyplot as plt
 from matplotlib import image as mpimg
 
 
 def take_photo():
-    # camera = iio.get_reader("<video8>")
-    # screenshot = camera.get_data(0)
-    # camera.close()
-    # imageio.imwrite("/tmp/test.jpg", screenshot)
-    #
+    t = threading.Thread(target=show)
+    t.setDaemon(True)
+    t.start()
+
+
+def show():
     plt.clf()
     img = mpimg.imread('IMG.jpg')
     # Display the image
