@@ -1,4 +1,4 @@
-picamzero~=1.01
+picamzero
 fastapi
 uvicorn
 pydub
