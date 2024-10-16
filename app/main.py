@@ -22,8 +22,10 @@ import json
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Startup complete")
-    img = mpimg.imread('Screenshot.png')
-    plt.imshow(img)
+    from PIL import Image
+    # Load an image
+    img = Image.open('animation.gif')
+    img.show()
     logger.info("animation displayed")
     yield
 

@@ -42,3 +42,4 @@ pydub
 pygame
 imageio[ffmpeg]
 matplotlib
+pillow
