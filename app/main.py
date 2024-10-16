@@ -10,10 +10,10 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-@app.post("/callback")
+@app.post("/take-photo")
 def read_root():
     take_photo()
-    return {"Hello": "World"}
+    return "done"
 
 @app.post("/play-audio")
 def play():

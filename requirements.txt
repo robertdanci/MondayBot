@@ -1,5 +1,4 @@
-picamzero
 fastapi
 uvicorn
 pydub
-
+pygame
