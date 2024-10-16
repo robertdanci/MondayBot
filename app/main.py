@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
     img = mpimg.imread('Screenshot.png')
     # Display the image
     plt.imshow(img)
-    plt.show()
+    plt.show(block=False)
     logger.info("animation displayed")
     yield
 

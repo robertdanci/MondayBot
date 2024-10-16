@@ -10,6 +10,6 @@ def take_photo():
 
     plt.clf()
     plt.imshow(screenshot)
-    plt.show()
+    plt.show(block=False)
 
 
