@@ -3,18 +3,16 @@ import os
 from contextlib import asynccontextmanager
 from typing import Dict, Any
 
-from PIL.Image import Image
 from fastapi import FastAPI
 from pydantic import BaseModel
-import matplotlib.image as mpimg
 
 from app.audio_service import play_audio
 from app.camera_service import take_photo
-import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
 
-
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 import requests
 import json
@@ -22,10 +20,10 @@ import json
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Startup complete")
-    from PIL import Image
-    # Load an image
-    img = Image.open('animation.gif')
-    img.show()
+    img = mpimg.imread('Screenshot.png')
+    # Display the image
+    plt.imshow(img)
+    plt.show()
     logger.info("animation displayed")
     yield
 
