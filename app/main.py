@@ -21,27 +21,28 @@ def play():
     play_audio()
     return "done"
 
-"""
-{
-  app: 'monday',
-  type: 'update_column_value',
-  triggerTime: '2024-10-16T11:44:03.781Z',
-  subscriptionId: 420586429,
-  userId: 43066799,
-  originalTriggerUuid: null,
-  boardId: 7410328198,
-  groupId: 'group_title',
-  pulseId: 7410328521,
-  pulseName: 'Item 5',
-  columnId: 'status',
-  columnType: 'color',
-  columnTitle: 'Status',
-  value: {
-    label: { index: 1, text: 'Done', style: [Object], is_done: true },
-    post_id: null
-  },
-"""
 class Event(BaseModel):
+    """
+    Mirrors the monday webhook event payload for boards
+    {
+      app: 'monday',
+      type: 'update_column_value',
+      triggerTime: '2024-10-16T11:44:03.781Z',
+      subscriptionId: 420586429,
+      userId: 43066799,
+      originalTriggerUuid: null,
+      boardId: 7410328198,
+      groupId: 'group_title',
+      pulseId: 7410328521,
+      pulseName: 'Item 5',
+      columnId: 'status',
+      columnType: 'color',
+      columnTitle: 'Status',
+      value: {
+        label: { index: 1, text: 'Done', style: [Object], is_done: true },
+        post_id: null
+      },
+    """
     app: str
     type: str
     triggerTime: str
@@ -54,6 +55,7 @@ class Event(BaseModel):
     columnId: str
     columnType: str
     columnTitle: str
+    # we don't need the value object because the automation is setup to only trigger when status changes to DONE
 
 class WebHookBody(BaseModel):
     event: Event | None = None
