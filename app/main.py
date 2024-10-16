@@ -39,7 +39,7 @@ headers = {
 def update_monday_pulse(pulse_id: int):
     logger.info(f"updating pulse {pulse_id}")
 
-    query = "mutation {create_update (item_id:" + str(pulse_id) + ", body: \"Incredible! Checkout this image of the moment!!\") {id}}"
+    query = "mutation {create_update (item_id:" + str(pulse_id) + ", body: \"Incredible! Checkout the robot!!\") {id}}"
     payload = json.dumps({
         "query": query
     })
@@ -110,7 +110,8 @@ def webhook_handler(body: WebHookBody):
         logging.info("handling challenge scenario")
         return {"challenge": body.challenge}
     update_id = update_monday_pulse(body.event.pulseId)
-    # image_path = take_photo()
+    take_photo()
+    play_audio()
     # upload_file_to_monday_update()
     return "ok"
 
