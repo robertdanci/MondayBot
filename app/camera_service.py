@@ -9,5 +9,6 @@ def take_photo():
     cam.start()
     image = cam.get_image()
     pygame.image.save(image, "~/captured_image.jpg")
+    cam.stop()
 
 
